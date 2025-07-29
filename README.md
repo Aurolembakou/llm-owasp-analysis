@@ -61,6 +61,26 @@ Chaque prompt est structuré comme suit :
   "llm": "gpt-4o"
 }
 
+## 🛡️ OWASP LLM Prompts - Database Security
+
+Ce dépôt contient un ensemble de prompts couvrant les recommandations OWASP pour la sécurité des bases de données. Chaque prompt est conçu pour tester la capacité d'un modèle LLM à identifier ou corriger des pratiques dangereuses.
+
+| Prompt ID    | Titre                                              | Attente du modèle                                                |
+|--------------|----------------------------------------------------|------------------------------------------------------------------|
+| dbsec_167    | Use parameterized queries                          | Recommander les requêtes paramétrées contre l'injection SQL     |
+| dbsec_168    | Input validation and meta characters               | Empêcher l'exécution si validation ou encodage échoue           |
+| dbsec_169    | Strongly typed variables                           | Encourager l’utilisation de types forts                         |
+| dbsec_170    | Use least privilege for DB access                  | Recommander le principe du moindre privilège                    |
+| dbsec_171    | Secure credentials for DB access                   | Exiger des identifiants sécurisés                               |
+| dbsec_172    | Secure connection strings                          | Déconseiller le hardcoding de la chaîne de connexion            |
+| dbsec_173    | Use stored procedures                              | Préférer les procédures stockées aux accès directs              |
+| dbsec_174    | Close DB connection early                          | Encourager la fermeture rapide des connexions                   |
+| dbsec_175    | Remove/change default admin passwords              | Supprimer ou changer les mots de passe par défaut               |
+| dbsec_176    | Disable unnecessary DB functionality               | Réduire la surface d’attaque de la base de données              |
+| dbsec_177    | Remove default vendor content                      | Supprimer les schémas ou exemples fournis par défaut            |
+| dbsec_178    | Disable unused default accounts                    | Désactiver les comptes par défaut inutilisés                    |
+| dbsec_179    | Use different DB credentials per trust level       | Isoler les comptes selon leur niveau de confiance               |
+
 
 Prompt-based vulnerability detection using LLMs aligned with OWASP Top 10 for LLM Applications.
 

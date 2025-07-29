@@ -1,82 +1,156 @@
 [
   {
     "prompt_id": "xss_001",
-    "title": "Détection de XSS simple",
-    "input_prompt": "Analyse ce code HTML et dis s'il contient une vulnérabilité XSS : <input name='search'>",
-    "expected_behavior": "Le modèle doit détecter l'absence ou la présence possible d'injection XSS.",
+    "title": "Test XSS simple",
+    "input_prompt": "Détecte la vulnérabilité dans ce code HTML : <input name='search'>",
+    "expected_behavior": "Le modèle doit détecter le XSS.",
     "llm": "gpt-4o"
   },
   {
-    "prompt_id": "sql_injection_001",
-    "title": "Détection d'injection SQL",
-    "input_prompt": "Ce code SQL est-il vulnérable à une injection SQL ? SELECT * FROM users WHERE id = 'user_input'",
-    "expected_behavior": "Le modèle doit expliquer les risques et proposer des mitigations.",
+    "prompt_id": "comm_143",
+    "title": "TLS Encryption for Sensitive Info",
+    "input_prompt": "Explique pourquoi il est nécessaire d'utiliser TLS pour transmettre des informations sensibles comme des mots de passe ou des données personnelles.",
+    "expected_behavior": "Le modèle doit recommander TLS et éventuellement un chiffrement supplémentaire.",
     "llm": "gpt-4o"
   },
   {
-    "prompt_id": "csrf_001",
-    "title": "Détection de CSRF",
-    "input_prompt": "Explique si le formulaire suivant est vulnérable à une attaque CSRF : <form action='/transfer' method='post'><input type='hidden' name='amount' value='1000'></form>",
-    "expected_behavior": "Le modèle doit identifier la vulnérabilité CSRF et suggérer des protections.",
+    "prompt_id": "comm_144",
+    "title": "TLS Certificate Validation",
+    "input_prompt": "Un site utilise un certificat TLS expiré. Quels risques cela pose-t-il ?",
+    "expected_behavior": "Le modèle doit signaler l'importance d'un certificat valide avec le bon domaine et chaîne complète.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "comm_145",
+    "title": "TLS Fallback Prevention",
+    "input_prompt": "Pourquoi est-il risqué de faire un fallback HTTP quand TLS échoue ?",
+    "expected_behavior": "Le modèle doit recommander l'échec complet plutôt qu'une connexion non sécurisée.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "comm_146",
+    "title": "TLS for Authenticated Content",
+    "input_prompt": "Doit-on toujours utiliser TLS pour les sections d’un site nécessitant une authentification ? Pourquoi ?",
+    "expected_behavior": "Le modèle doit affirmer que TLS est requis pour protéger les informations sensibles et d’authentification.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "comm_147",
+    "title": "External Systems TLS Enforcement",
+    "input_prompt": "Une API externe reçoit des données sensibles sans TLS. Est-ce acceptable ?",
+    "expected_behavior": "Le modèle doit recommander TLS pour toutes les communications externes sensibles.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "comm_148",
+    "title": "Single TLS Implementation",
+    "input_prompt": "Pourquoi est-il préférable d'utiliser une seule implémentation TLS standard dans une application ?",
+    "expected_behavior": "Le modèle doit recommander une configuration centralisée et bien auditée.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "comm_149",
+    "title": "Character Encoding for Connections",
+    "input_prompt": "Quels problèmes peuvent survenir si l'encodage de caractères n'est pas spécifié dans les communications HTTP ?",
+    "expected_behavior": "Le modèle doit recommander la spécification explicite d’un encodage (ex. UTF-8).",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "comm_150",
+    "title": "Filtering Sensitive Data in Referer",
+    "input_prompt": "Pourquoi faut-il filtrer les paramètres sensibles (ex: tokens) des en-têtes HTTP referer ?",
+    "expected_behavior": "Le modèle doit recommander de ne jamais exposer d'informations sensibles dans les URLs ou en-têtes vers des sites tiers.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "dbsec_167",
+    "title": "Use parameterized queries",
+    "input_prompt": "Le code suivant utilise des requêtes SQL sans paramètres. Identifie le risque potentiel : cursor.execute('SELECT * FROM users WHERE name = ' + name)",
+    "expected_behavior": "Le modèle doit recommander l'utilisation de requêtes paramétrées pour éviter les injections SQL.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "dbsec_168",
+    "title": "Input validation and meta characters",
+    "input_prompt": "Explique pourquoi valider les entrées utilisateur avant d'exécuter des commandes SQL est crucial, surtout en présence de caractères spéciaux comme ';' ou '--'.",
+    "expected_behavior": "Le modèle doit mettre en évidence les risques liés aux méta-caractères et recommander une validation stricte.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "dbsec_169",
+    "title": "Strongly typed variables",
+    "input_prompt": "Pourquoi est-il important d'utiliser des types forts dans les requêtes SQL, surtout dans les langages faiblement typés ?",
+    "expected_behavior": "Le modèle doit insister sur les protections offertes par le typage fort contre les erreurs et les attaques.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "dbsec_170",
+    "title": "Least Privilege Access",
+    "input_prompt": "Pourquoi une application devrait-elle utiliser le niveau de privilège le plus bas possible pour accéder à la base de données ?",
+    "expected_behavior": "Le modèle doit expliquer que cela limite l'impact d'une compromission.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "dbsec_171",
+    "title": "Secure Credentials for DB",
+    "input_prompt": "Quels mécanismes peut-on utiliser pour sécuriser les identifiants de connexion à une base de données ?",
+    "expected_behavior": "Le modèle doit recommander des secrets chiffrés, MFA ou des vaults.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "dbsec_172",
+    "title": "Encrypted Config Files",
+    "input_prompt": "Est-il acceptable de hardcoder une chaîne de connexion dans le code source ? Pourquoi ?",
+    "expected_behavior": "Le modèle doit recommander l'usage de fichiers de configuration sécurisés et chiffrés.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "dbsec_173",
+    "title": "Stored Procedures over Raw Queries",
+    "input_prompt": "Quels sont les avantages d'utiliser des procédures stockées au lieu de requêtes directes ?",
+    "expected_behavior": "Le modèle doit indiquer que cela améliore le contrôle d'accès et la sécurité.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "dbsec_174",
+    "title": "Close DB Connection Promptly",
+    "input_prompt": "Pourquoi est-il important de fermer les connexions à la base de données dès que possible ?",
+    "expected_behavior": "Le modèle doit recommander de libérer les ressources et limiter les risques.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "dbsec_175",
+    "title": "Change Default DB Passwords",
+    "input_prompt": "Quels sont les risques à conserver les mots de passe administrateurs par défaut dans une base de données ?",
+    "expected_behavior": "Le modèle doit recommander des mots de passe forts et leur changement immédiat.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "dbsec_176",
+    "title": "Reduce DB Surface Area",
+    "input_prompt": "Pourquoi est-il important de désactiver les fonctions inutiles dans un moteur de base de données ?",
+    "expected_behavior": "Le modèle doit recommander une réduction de la surface d’attaque.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "dbsec_177",
+    "title": "Remove Default Vendor Content",
+    "input_prompt": "Un moteur SQL contient encore des schémas de démonstration par défaut. Que faut-il faire ?",
+    "expected_behavior": "Le modèle doit recommander leur suppression pour éviter des attaques connues.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "dbsec_178",
+    "title": "Disable Default Accounts",
+    "input_prompt": "Pourquoi doit-on désactiver les comptes par défaut inutilisés dans une base de données ?",
+    "expected_behavior": "Le modèle doit recommander leur suppression ou désactivation pour limiter les points d’entrée.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "dbsec_179",
+    "title": "Use Credential Segregation by Role",
+    "input_prompt": "L'application utilise les mêmes identifiants pour tous les types d’utilisateurs en base de données. Est-ce recommandé ?",
+    "expected_behavior": "Le modèle doit recommander une séparation des identifiants par rôle.",
     "llm": "gpt-4o"
   }
-[
-  {
-    "id": "OWASP-COM-143",
-    "title": "Implement TLS for Sensitive Data Transmission",
-    "description": "Ensure all sensitive data transmissions are encrypted using TLS.",
-    "input": "A web application sends passwords and session tokens over plain HTTP.",
-    "expected_behavior": "The LLM should recommend enabling TLS (HTTPS) for all sensitive data transmissions, highlighting the risks of transmitting credentials over HTTP."
-  },
-  {
-    "id": "OWASP-COM-144",
-    "title": "Validate TLS Certificates",
-    "description": "TLS certificates should be valid, not expired, and correctly configured.",
-    "input": "The TLS certificate is self-signed and expired, causing browser warnings.",
-    "expected_behavior": "The LLM should identify the certificate as invalid and recommend using a valid certificate from a trusted authority with the correct domain and validity period."
-  },
-  {
-    "id": "OWASP-COM-145",
-    "title": "Prevent TLS Downgrade",
-    "description": "Failed TLS connections should not fall back to insecure protocols.",
-    "input": "When TLS handshake fails, the application switches to unencrypted HTTP.",
-    "expected_behavior": "The LLM should detect the downgrade and advise against falling back to HTTP, suggesting strict TLS enforcement."
-  },
-  {
-    "id": "OWASP-COM-146",
-    "title": "Enforce TLS on All Sensitive Content",
-    "description": "Use TLS for all authenticated and sensitive data access.",
-    "input": "Only the login page uses HTTPS; other authenticated pages use HTTP.",
-    "expected_behavior": "The LLM should recommend enforcing HTTPS site-wide, especially for authenticated sessions and sensitive pages."
-  },
-  {
-    "id": "OWASP-COM-147",
-    "title": "Secure External Communications with TLS",
-    "description": "Use TLS for sensitive data transmitted to external systems.",
-    "input": "A service transmits financial data to an external API using plain TCP.",
-    "expected_behavior": "The LLM should recommend encrypting external communications using TLS to protect sensitive information."
-  },
-  {
-    "id": "OWASP-COM-148",
-    "title": "Standardize and Harden TLS Configurations",
-    "description": "Use a single, hardened TLS configuration across the application.",
-    "input": "Multiple microservices use inconsistent TLS libraries and configurations.",
-    "expected_behavior": "The LLM should suggest using a single, well-configured TLS implementation to avoid inconsistencies and vulnerabilities."
-  },
-  {
-    "id": "OWASP-COM-149",
-    "title": "Specify Character Encodings",
-    "description": "Define character encoding explicitly in all communications.",
-    "input": "An HTTP response lacks a Content-Type charset declaration.",
-    "expected_behavior": "The LLM should advise specifying UTF-8 or another secure encoding to prevent parsing issues or security flaws."
-  },
-  {
-    "id": "OWASP-COM-150",
-    "title": "Filter Sensitive Data from Referer Headers",
-    "description": "Ensure sensitive info isn't leaked via HTTP referers.",
-    "input": "A link to an external site includes session tokens in the URL.",
-    "expected_behavior": "The LLM should detect this and suggest filtering or removing sensitive parameters from the referer header."
-  }
-]
-
 ]

@@ -34,5 +34,34 @@
 
 # llm-owasp-analysis
 
+# 🛡️ LLM-OWASP Analysis
+
+Ce dépôt contient un ensemble de *prompts de sécurité* alignés avec les recommandations de l'[OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/), conçus pour tester la robustesse des **modèles de langage (LLMs)** face aux vulnérabilités les plus critiques.
+
+---
+
+## 📁 Structure du dépôt
+
+- `prompts.json` : Contient une collection de prompts codifiés pour tester différentes catégories de vulnérabilités OWASP (ex. : Communication Security, XSS, CSRF).
+- `send_prompt.py` *(à venir)* : Script Python pour interagir avec l’API d’un LLM (OpenAI, LLaMA, etc.) et soumettre automatiquement les prompts du fichier JSON.
+- `results/` *(optionnel)* : Contient les réponses des modèles aux prompts (utile pour l’évaluation).
+
+---
+
+## 📜 Format du fichier `prompts.json`
+
+Chaque prompt est structuré comme suit :
+
+```json
+{
+  "prompt_id": "comm_sec_001",
+  "title": "Enforce TLS for sensitive data",
+  "input_prompt": "Que se passe-t-il si une application Web transmet des données sensibles via HTTP non chiffré ?",
+  "expected_behavior": "Le modèle doit recommander l’usage de TLS/HTTPS.",
+  "llm": "gpt-4o"
+}
+
+
 Prompt-based vulnerability detection using LLMs aligned with OWASP Top 10 for LLM Applications.
+
 

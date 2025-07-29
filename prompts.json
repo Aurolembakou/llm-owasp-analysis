@@ -1,0 +1,23 @@
+[
+  {
+    "prompt_id": "xss_001",
+    "title": "Détection de XSS simple",
+    "input_prompt": "Analyse ce code HTML et dis s'il contient une vulnérabilité XSS : <input name='search'>",
+    "expected_behavior": "Le modèle doit détecter l'absence ou la présence possible d'injection XSS.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "sql_injection_001",
+    "title": "Détection d'injection SQL",
+    "input_prompt": "Ce code SQL est-il vulnérable à une injection SQL ? SELECT * FROM users WHERE id = 'user_input'",
+    "expected_behavior": "Le modèle doit expliquer les risques et proposer des mitigations.",
+    "llm": "gpt-4o"
+  },
+  {
+    "prompt_id": "csrf_001",
+    "title": "Détection de CSRF",
+    "input_prompt": "Explique si le formulaire suivant est vulnérable à une attaque CSRF : <form action='/transfer' method='post'><input type='hidden' name='amount' value='1000'></form>",
+    "expected_behavior": "Le modèle doit identifier la vulnérabilité CSRF et suggérer des protections.",
+    "llm": "gpt-4o"
+  }
+]

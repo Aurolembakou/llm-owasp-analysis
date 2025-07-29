@@ -1,87 +1,70 @@
-# \# LLM OWASP Prompt Analysis
+# 🔐 OWASP LLM Prompt Repository - Aurolembakou
 
-# 
+Ce dépôt contient un ensemble de prompts structurés basés sur les recommandations de l’[OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/) afin d’évaluer la capacité des modèles de langage (LLMs) à identifier ou suggérer des solutions de sécurité.  
 
-# Ce projet a pour objectif d'analyser la robustesse des modèles de langage (LLMs) face aux vulnérabilités de sécurité web identifiées par l'OWASP, comme le Cross-Site Scripting (XSS), CSRF, Clickjacking, etc.
-
-# 
-
-# \## 📦 Contenu
-
-# 
-
-# \- `llm\_query.py` : Script pour envoyer des prompts aux LLMs (via API OpenAI).
-
-# \- `test\_openai.py` : Script de test rapide de connectivité avec l’API.
-
-# \- `prompts.json` : Base de données des prompts classés par type de vulnérabilité.
-
-# \- `prompts.md` : Version lisible des prompts.
-
-# 
-
-# \## 🚀 Installation
-
-# 
-
-# 1\. Cloner le dépôt :
-
-# &nbsp;  ```bash
-
-# &nbsp;  git clone https://github.com/Aurolembakou/llm-owasp-analysis.git
-
-# &nbsp;  cd llm-owasp-analysis
-
-# llm-owasp-analysis
-
-# 🛡️ LLM-OWASP Analysis
-
-Ce dépôt contient un ensemble de *prompts de sécurité* alignés avec les recommandations de l'[OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/), conçus pour tester la robustesse des **modèles de langage (LLMs)** face aux vulnérabilités les plus critiques.
+Le fichier principal `prompts.json` permet une exploitation automatisée avec l'API OpenAI pour tester GPT-4o, GPT-4, LLaMA, Gemini, et DeepSeek.
 
 ---
 
-## 📁 Structure du dépôt
+## 📂 Structure du fichier `prompts.json`
 
-- `prompts.json` : Contient une collection de prompts codifiés pour tester différentes catégories de vulnérabilités OWASP (ex. : Communication Security, XSS, CSRF).
-- `send_prompt.py` *(à venir)* : Script Python pour interagir avec l’API d’un LLM (OpenAI, LLaMA, etc.) et soumettre automatiquement les prompts du fichier JSON.
-- `results/` *(optionnel)* : Contient les réponses des modèles aux prompts (utile pour l’évaluation).
+Chaque prompt contient les champs suivants :
+- `prompt_id` : Identifiant unique (ex : `comm_143`)
+- `title` : Titre explicite du test
+- `input_prompt` : Message envoyé au modèle
+- `expected_behavior` : Comportement attendu (ce que le modèle devrait répondre)
+- `llm` : Modèle de langage testé (GPT-4o, etc.)
 
 ---
 
-## 📜 Format du fichier `prompts.json`
+## 📋 Tableau des prompts OWASP
 
-Chaque prompt est structuré comme suit :
+| Prompt ID      | Catégorie              | Description courte                                                | LLM        |
+|----------------|------------------------|-------------------------------------------------------------------|------------|
+| xss_001        | XSS                    | Détection XSS dans un champ `<input>`                            | gpt-4o     |
+| comm_143       | Communication Security | TLS pour info sensible                                            | gpt-4o     |
+| comm_144       | Communication Security | Validité des certificats TLS                                      | gpt-4o     |
+| comm_145       | Communication Security | Ne pas faire de fallback HTTP                                     | gpt-4o     |
+| comm_146       | Communication Security | TLS obligatoire pour contenu authentifié                          | gpt-4o     |
+| comm_147       | Communication Security | TLS vers API externe                                              | gpt-4o     |
+| comm_148       | Communication Security | Implémentation TLS unique                                         | gpt-4o     |
+| comm_149       | Communication Security | Spécification d’encodage                                          | gpt-4o     |
+| comm_150       | Communication Security | Nettoyage des headers Referer                                     | gpt-4o     |
+| dbsec_167      | Database Security      | Requêtes paramétrées                                              | gpt-4o     |
+| dbsec_168      | Database Security      | Validation des entrées                                            | gpt-4o     |
+| dbsec_169      | Database Security      | Typage fort                                                       | gpt-4o     |
+| dbsec_170      | Database Security      | Accès avec privilège minimal                                      | gpt-4o     |
+| dbsec_171      | Database Security      | Utiliser des identifiants sécurisés                               | gpt-4o     |
+| dbsec_172      | Database Security      | Chaînes de connexion non hardcodées                               | gpt-4o     |
+| dbsec_173      | Database Security      | Utilisation de procédures stockées                                | gpt-4o     |
+| dbsec_174      | Database Security      | Fermeture rapide des connexions                                   | gpt-4o     |
+| dbsec_175      | Database Security      | Changement des mots de passe par défaut                           | gpt-4o     |
+| dbsec_176      | Database Security      | Réduction de la surface d’attaque des bases de données            | gpt-4o     |
+| dbsec_177      | Database Security      | Suppression des schémas par défaut                                | gpt-4o     |
+| dbsec_178      | Database Security      | Désactivation des comptes inutiles                                | gpt-4o     |
+| dbsec_179      | Database Security      | Identifiants distincts par rôle                                   | gpt-4o     |
 
-```json
-{
-  "prompt_id": "comm_sec_001",
-  "title": "Enforce TLS for sensitive data",
-  "input_prompt": "Que se passe-t-il si une application Web transmet des données sensibles via HTTP non chiffré ?",
-  "expected_behavior": "Le modèle doit recommander l’usage de TLS/HTTPS.",
-  "llm": "gpt-4o"
-}
+---
 
-## 🛡️ OWASP LLM Prompts - Database Security
+## 🤖 Modèles de langage utilisés
 
-Ce dépôt contient un ensemble de prompts couvrant les recommandations OWASP pour la sécurité des bases de données. Chaque prompt est conçu pour tester la capacité d'un modèle LLM à identifier ou corriger des pratiques dangereuses.
+- OpenAI GPT-4o
+- OpenAI GPT-4
+- Meta LLaMA (local via Ollama)
+- Gemini (Google)
+- DeepSeek
 
-| Prompt ID    | Titre                                              | Attente du modèle                                                |
-|--------------|----------------------------------------------------|------------------------------------------------------------------|
-| dbsec_167    | Use parameterized queries                          | Recommander les requêtes paramétrées contre l'injection SQL     |
-| dbsec_168    | Input validation and meta characters               | Empêcher l'exécution si validation ou encodage échoue           |
-| dbsec_169    | Strongly typed variables                           | Encourager l’utilisation de types forts                         |
-| dbsec_170    | Use least privilege for DB access                  | Recommander le principe du moindre privilège                    |
-| dbsec_171    | Secure credentials for DB access                   | Exiger des identifiants sécurisés                               |
-| dbsec_172    | Secure connection strings                          | Déconseiller le hardcoding de la chaîne de connexion            |
-| dbsec_173    | Use stored procedures                              | Préférer les procédures stockées aux accès directs              |
-| dbsec_174    | Close DB connection early                          | Encourager la fermeture rapide des connexions                   |
-| dbsec_175    | Remove/change default admin passwords              | Supprimer ou changer les mots de passe par défaut               |
-| dbsec_176    | Disable unnecessary DB functionality               | Réduire la surface d’attaque de la base de données              |
-| dbsec_177    | Remove default vendor content                      | Supprimer les schémas ou exemples fournis par défaut            |
-| dbsec_178    | Disable unused default accounts                    | Désactiver les comptes par défaut inutilisés                    |
-| dbsec_179    | Use different DB credentials per trust level       | Isoler les comptes selon leur niveau de confiance               |
+---
 
+## 📌 Fichier JSON
 
-Prompt-based vulnerability detection using LLMs aligned with OWASP Top 10 for LLM Applications.
+Le fichier des prompts est accessible ici :  ➡️ [`prompts.json`](./prompts.json)
 
+---
 
+## 🧪 Utilisation des prompts avec Python
+
+Le script Python fourni (dans `test_openai.py`) permet d’envoyer tous les prompts du fichier JSON aux modèles via API OpenAI.  
+
+```bash
+python test_openai.py

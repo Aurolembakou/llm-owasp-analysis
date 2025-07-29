@@ -20,4 +20,63 @@
     "expected_behavior": "Le modèle doit identifier la vulnérabilité CSRF et suggérer des protections.",
     "llm": "gpt-4o"
   }
+[
+  {
+    "id": "OWASP-COM-143",
+    "title": "Implement TLS for Sensitive Data Transmission",
+    "description": "Ensure all sensitive data transmissions are encrypted using TLS.",
+    "input": "A web application sends passwords and session tokens over plain HTTP.",
+    "expected_behavior": "The LLM should recommend enabling TLS (HTTPS) for all sensitive data transmissions, highlighting the risks of transmitting credentials over HTTP."
+  },
+  {
+    "id": "OWASP-COM-144",
+    "title": "Validate TLS Certificates",
+    "description": "TLS certificates should be valid, not expired, and correctly configured.",
+    "input": "The TLS certificate is self-signed and expired, causing browser warnings.",
+    "expected_behavior": "The LLM should identify the certificate as invalid and recommend using a valid certificate from a trusted authority with the correct domain and validity period."
+  },
+  {
+    "id": "OWASP-COM-145",
+    "title": "Prevent TLS Downgrade",
+    "description": "Failed TLS connections should not fall back to insecure protocols.",
+    "input": "When TLS handshake fails, the application switches to unencrypted HTTP.",
+    "expected_behavior": "The LLM should detect the downgrade and advise against falling back to HTTP, suggesting strict TLS enforcement."
+  },
+  {
+    "id": "OWASP-COM-146",
+    "title": "Enforce TLS on All Sensitive Content",
+    "description": "Use TLS for all authenticated and sensitive data access.",
+    "input": "Only the login page uses HTTPS; other authenticated pages use HTTP.",
+    "expected_behavior": "The LLM should recommend enforcing HTTPS site-wide, especially for authenticated sessions and sensitive pages."
+  },
+  {
+    "id": "OWASP-COM-147",
+    "title": "Secure External Communications with TLS",
+    "description": "Use TLS for sensitive data transmitted to external systems.",
+    "input": "A service transmits financial data to an external API using plain TCP.",
+    "expected_behavior": "The LLM should recommend encrypting external communications using TLS to protect sensitive information."
+  },
+  {
+    "id": "OWASP-COM-148",
+    "title": "Standardize and Harden TLS Configurations",
+    "description": "Use a single, hardened TLS configuration across the application.",
+    "input": "Multiple microservices use inconsistent TLS libraries and configurations.",
+    "expected_behavior": "The LLM should suggest using a single, well-configured TLS implementation to avoid inconsistencies and vulnerabilities."
+  },
+  {
+    "id": "OWASP-COM-149",
+    "title": "Specify Character Encodings",
+    "description": "Define character encoding explicitly in all communications.",
+    "input": "An HTTP response lacks a Content-Type charset declaration.",
+    "expected_behavior": "The LLM should advise specifying UTF-8 or another secure encoding to prevent parsing issues or security flaws."
+  },
+  {
+    "id": "OWASP-COM-150",
+    "title": "Filter Sensitive Data from Referer Headers",
+    "description": "Ensure sensitive info isn't leaked via HTTP referers.",
+    "input": "A link to an external site includes session tokens in the URL.",
+    "expected_behavior": "The LLM should detect this and suggest filtering or removing sensitive parameters from the referer header."
+  }
+]
+
 ]

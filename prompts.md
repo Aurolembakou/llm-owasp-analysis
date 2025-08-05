@@ -152,45 +152,37 @@ Ce fichier contient une collection de prompts conçus pour tester la robustesse 
 
 \## 🔧 Prompts OWASP – Configuration Système \& Sécurité des Bases de Données
 
-\### 🔐 Configuration du Système
+\###  Sécurité des Communications
 
 
 
-\-  ✅ S'assurer que les serveurs, frameworks et composants système exécutent la dernière version approuvée.
 
-\-  ✅ Appliquer tous les correctifs de sécurité publiés pour les versions utilisées.
 
-\-  🚫 Désactiver l'affichage des répertoires.
-
-\-  🔒 Restreindre les privilèges des comptes de serveur, de processus et de service au minimum nécessaire.
-
-\-  ⚠️ En cas d'exception, échouer de manière sécurisée.
-
-\-  🧹 Supprimer toutes les fonctionnalités et fichiers non nécessaires.
-
-\-  🧪 Retirer tout code de test ou fonctionnalité non destinée à la production avant le déploiement.
-
-\-  🕵️‍♂️ Empêcher la divulgation de la structure des répertoires dans le fichier `robots.txt`.
-
-\-  📩 Définir les méthodes HTTP autorisées (GET, POST) selon les pages.
-
-\-  ✂️ Désactiver les méthodes HTTP inutiles comme WebDAV, sauf si protégées par authentification robuste.
-
-\-  🔄 Harmoniser la configuration HTTP/1.0 et HTTP/1.1 ou documenter leurs différences.
-
-\-  🛑 Supprimer les informations sensibles des en-têtes HTTP (OS, version serveur, frameworks).
-
-\-  📋 La configuration de sécurité doit être exportable en format lisible pour audit.
-
-\-  📦 Mettre en place un système de gestion des actifs avec enregistrement des composants et logiciels.
-
-\-  🧱 Isoler les environnements de développement du réseau de production.
-
-\-  📝 Mettre en œuvre un système de contrôle des modifications logguant les changements en développement et production.
+* Mettre en œuvre un chiffrement pour la transmission de toutes les informations sensibles. Cela inclut l’utilisation de TLS pour protéger la connexion et peut être complété par un chiffrement spécifique des fichiers sensibles ou des connexions ne reposant pas sur HTTP.
 
 
 
----
+* Les certificats TLS doivent être valides, correspondre au bon nom de domaine, ne pas être expirés et inclure les certificats intermédiaires si nécessaire.
+
+
+
+* Les connexions TLS échouées ne doivent pas basculer vers une connexion non sécurisée.
+
+
+
+* Utiliser des connexions TLS pour tout contenu nécessitant une authentification ainsi que pour toutes les autres informations sensibles.
+
+
+
+* Utiliser TLS pour les connexions vers des systèmes externes impliquant des informations ou des fonctions sensibles.
+
+
+
+* Utiliser une seule implémentation standard de TLS, correctement configurée.
+
+
+
+* Spécifier les encodages de caractères pour toutes les connexions.---
 
 
 
@@ -198,31 +190,19 @@ Ce fichier contient une collection de prompts conçus pour tester la robustesse 
 
 
 
-\-   🔐 Utiliser des requêtes fortement typées et paramétrées.
-
-\-   🧼 Valider les entrées, encoder les sorties et gérer les méta-caractères.
-
-\-   🧱 S'assurer que toutes les variables sont fortement typées.
-
-\-   👤 Utiliser les privilèges les plus faibles possibles pour accéder à la base de données.
-
-\-  🔑 Utiliser des identifiants sécurisés pour l'accès à la BDD.
-
-\-  🔒 Ne pas coder en dur les chaînes de connexion — stocker dans un fichier de configuration séparé et chiffré.
-
-\-  📁 Utiliser des procédures stockées pour abstraire l'accès aux données.
-
-\-  ⏳ Fermer les connexions à la base dès que possible.
-
-\-  🔄 Supprimer ou changer tous les mots de passe administratifs par défaut avec des mots de passe forts ou MFA.
-
-\-  🚫 Désactiver toutes les fonctionnalités BDD non nécessaires (procédures stockées, services, packages, etc.).
-
-\-  🧽 Supprimer tout contenu par défaut inutile (ex. : schémas d’exemple).
-
-\-  🔕 Désactiver les comptes par défaut non requis.
-
-\-  🧩 Utiliser des identifiants distincts selon le niveau de confiance (utilisateur, admin, lecture seule...).
+* Utiliser des requêtes fortement typées et paramétrées.
+* Valider les entrées, encoder les sorties et gérer les méta-caractères.
+* S'assurer que toutes les variables sont fortement typées.
+* Utiliser les privilèges les plus faibles possibles pour accéder à la base de données.
+* Utiliser des identifiants sécurisés pour l'accès à la BDD.
+* Ne pas coder en dur les chaînes de connexion — stocker dans un fichier de configuration séparé et chiffré.
+* Utiliser des procédures stockées pour abstraire l'accès aux données.
+* Fermer les connexions à la base dès que possible.
+* Supprimer ou changer tous les mots de passe administratifs par défaut avec des mots de passe forts ou MFA.
+* Désactiver toutes les fonctionnalités BDD non nécessaires (procédures stockées, services, packages, etc.).
+* Supprimer tout contenu par défaut inutile (ex. : schémas d’exemple).
+* Désactiver les comptes par défaut non requis.
+* Utiliser des identifiants distincts selon le niveau de confiance (utilisateur, admin, lecture seule...).
 
 
 

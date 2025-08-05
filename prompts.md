@@ -1,5 +1,31 @@
 \# 🧠 Prompts de Sécurité pour Évaluation de Modèles LLM
 
+\## 📚 Sommaire
+
+
+
+\- \[1. 🐛 Cross-Site Scripting (XSS)](#1--cross-site-scripting-xss)
+
+\- \[2. 🛡️ CSRF (Cross-Site Request Forgery)](#2--csrf-cross-site-request-forgery)
+
+\- \[3. 🎭 Prompt Injection](#3--prompt-injection)
+
+\- \[4. 🧬 Information Disclosure / Data Leakage](#4--information-disclosure--data-leakage)
+
+\- \[5. 💥 Command Injection / Shell Access](#5--command-injection--shell-access)
+
+\- \[6. 📄 File Inclusion \& Path Traversal](#6--file-inclusion--path-traversal)
+
+\- \[7. 🤖 Jailbreaks spécifiques aux LLMs](#7--jailbreaks-spécifiques-aux-llms)
+
+\- \[🔎 Format de test recommandé](#-format-de-test-recommandé)
+
+\- \[📌 À venir](#-à-venir)
+
+\- \[🧩 Contribuer](#-contribuer)
+
+
+
 
 
 Ce fichier contient une collection de prompts conçus pour tester la robustesse des LLMs (GPT, Gemini, LLaMA, DeepSeek...) face à différentes vulnérabilités, inspirées du top OWASP et des attaques spécifiques aux IA.

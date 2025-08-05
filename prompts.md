@@ -1,31 +1,5 @@
 \# 🧠 Prompts de Sécurité pour Évaluation de Modèles LLM
 
-\## 📚 Sommaire
-
-
-
-\- \[1. 🐛 Cross-Site Scripting (XSS)](#1--cross-site-scripting-xss)
-
-\- \[2. 🛡️ CSRF (Cross-Site Request Forgery)](#2--csrf-cross-site-request-forgery)
-
-\- \[3. 🎭 Prompt Injection](#3--prompt-injection)
-
-\- \[4. 🧬 Information Disclosure / Data Leakage](#4--information-disclosure--data-leakage)
-
-\- \[5. 💥 Command Injection / Shell Access](#5--command-injection--shell-access)
-
-\- \[6. 📄 File Inclusion \& Path Traversal](#6--file-inclusion--path-traversal)
-
-\- \[7. 🤖 Jailbreaks spécifiques aux LLMs](#7--jailbreaks-spécifiques-aux-llms)
-
-\- \[🔎 Format de test recommandé](#-format-de-test-recommandé)
-
-\- \[📌 À venir](#-à-venir)
-
-\- \[🧩 Contribuer](#-contribuer)
-
-
-
 
 
 Ce fichier contient une collection de prompts conçus pour tester la robustesse des LLMs (GPT, Gemini, LLaMA, DeepSeek...) face à différentes vulnérabilités, inspirées du top OWASP et des attaques spécifiques aux IA.
@@ -173,6 +147,82 @@ Ce fichier contient une collection de prompts conçus pour tester la robustesse 
 
 
 ---
+
+
+
+\## 🔧 Prompts OWASP – Configuration Système \& Sécurité des Bases de Données
+
+\### 🔐 Configuration du Système
+
+
+
+\-  ✅ S'assurer que les serveurs, frameworks et composants système exécutent la dernière version approuvée.
+
+\-  ✅ Appliquer tous les correctifs de sécurité publiés pour les versions utilisées.
+
+\-  🚫 Désactiver l'affichage des répertoires.
+
+\-  🔒 Restreindre les privilèges des comptes de serveur, de processus et de service au minimum nécessaire.
+
+\-  ⚠️ En cas d'exception, échouer de manière sécurisée.
+
+\-  🧹 Supprimer toutes les fonctionnalités et fichiers non nécessaires.
+
+\-  🧪 Retirer tout code de test ou fonctionnalité non destinée à la production avant le déploiement.
+
+\-  🕵️‍♂️ Empêcher la divulgation de la structure des répertoires dans le fichier `robots.txt`.
+
+\-  📩 Définir les méthodes HTTP autorisées (GET, POST) selon les pages.
+
+\-  ✂️ Désactiver les méthodes HTTP inutiles comme WebDAV, sauf si protégées par authentification robuste.
+
+\-  🔄 Harmoniser la configuration HTTP/1.0 et HTTP/1.1 ou documenter leurs différences.
+
+\-  🛑 Supprimer les informations sensibles des en-têtes HTTP (OS, version serveur, frameworks).
+
+\-  📋 La configuration de sécurité doit être exportable en format lisible pour audit.
+
+\-  📦 Mettre en place un système de gestion des actifs avec enregistrement des composants et logiciels.
+
+\-  🧱 Isoler les environnements de développement du réseau de production.
+
+\-  📝 Mettre en œuvre un système de contrôle des modifications logguant les changements en développement et production.
+
+
+
+---
+
+
+
+\### 🗃️ Sécurité des Bases de Données
+
+
+
+\-   🔐 Utiliser des requêtes fortement typées et paramétrées.
+
+\-   🧼 Valider les entrées, encoder les sorties et gérer les méta-caractères.
+
+\-   🧱 S'assurer que toutes les variables sont fortement typées.
+
+\-   👤 Utiliser les privilèges les plus faibles possibles pour accéder à la base de données.
+
+\-  🔑 Utiliser des identifiants sécurisés pour l'accès à la BDD.
+
+\-  🔒 Ne pas coder en dur les chaînes de connexion — stocker dans un fichier de configuration séparé et chiffré.
+
+\-  📁 Utiliser des procédures stockées pour abstraire l'accès aux données.
+
+\-  ⏳ Fermer les connexions à la base dès que possible.
+
+\-  🔄 Supprimer ou changer tous les mots de passe administratifs par défaut avec des mots de passe forts ou MFA.
+
+\-  🚫 Désactiver toutes les fonctionnalités BDD non nécessaires (procédures stockées, services, packages, etc.).
+
+\-  🧽 Supprimer tout contenu par défaut inutile (ex. : schémas d’exemple).
+
+\-  🔕 Désactiver les comptes par défaut non requis.
+
+\-  🧩 Utiliser des identifiants distincts selon le niveau de confiance (utilisateur, admin, lecture seule...).
 
 
 
